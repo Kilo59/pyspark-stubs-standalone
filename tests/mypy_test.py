@@ -64,8 +64,7 @@ def match(fn, args, blacklist):
 def libpath(major, minor):
     versions = ['%d.%d' % (major, minor)
                 for minor in reversed(range(minor + 1))]
-    versions.append(str(major))
-    versions.append('2and3')
+    versions.extend((str(major), '2and3'))
     paths = []
     for v in versions:
         for top in ['stdlib', 'third_party']:
@@ -127,11 +126,14 @@ def main():
                                     files.append(fn)
         if files:
             runs += 1
-            flags = ['--python-version', '%d.%d' % (major, minor)]
-            flags.append('--strict-optional')
-            flags.append('--no-site-packages')
-            flags.append('--show-traceback')
-            flags.append('--no-implicit-optional')
+            flags = [
+                '--python-version',
+                '%d.%d' % (major, minor),
+                '--strict-optional',
+                '--no-site-packages',
+                '--show-traceback',
+                '--no-implicit-optional',
+            ]
             if args.warn_unused_ignores:
                 flags.append('--warn-unused-ignores')
             sys.argv = ['mypy'] + flags + files
