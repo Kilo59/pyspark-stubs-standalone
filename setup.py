@@ -30,10 +30,10 @@ setup(
     long_description=(
         open("README.rst").read() if os.path.exists("README.rst") else ""
     ),
-    url="https://github.com/zero323/pyspark-stubs",
+    url="https://github.com/Kilo59/pyspark-stubs-standalone",
     packages=list(list_packages()),
     package_data={"": ["*.pyi", "py.typed"]},
-    install_requires=["pyspark>=3.0.0.dev0,<3.1.0"],
+    extras_require={"pyspark": ["pyspark>=3.0.0.dev0,<3.1.0"]},
     classifiers=[
         "Programming Language :: Python :: 3 :: Only",
         "Development Status :: 4 - Beta",
